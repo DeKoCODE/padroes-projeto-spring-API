@@ -1,7 +1,7 @@
 package dio.padroesprojetospring.service;
 
 import dio.padroesprojetospring.model.Cliente;
-import org.springframework.context.annotation.Bean;
+
 
 public interface ClienteService {
 

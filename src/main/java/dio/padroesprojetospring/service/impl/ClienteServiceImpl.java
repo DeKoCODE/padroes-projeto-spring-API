@@ -61,6 +61,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     private void salvarClienteComCep(Cliente cliente) {
+        //Verifica se o endereço do cliente já existe, pelo Cep.
         String cep = cliente.getEndereco().getCep();
         Endereco endereco = enderecoRepository.findById(cep).orElseGet(() -> {
             //Caso não exista, integra com ViaCEP e persiste o retorno.
@@ -68,8 +69,8 @@ public class ClienteServiceImpl implements ClienteService {
             enderecoRepository.save(novoEndereco);
             return novoEndereco;
         });
-        //Insere cliente vinculando ao endereço, novo ou existente.
         cliente.setEndereco(endereco);
+        //Insere cliente vinculando ao endereço, novo ou existente.
         clienteRepository.save(cliente);
     }
 }
